@@ -1,0 +1,24 @@
+main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+header {
+  text-align: center;
+}
+
+.movies {
+  list-style-type: none;
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.movie {
+  text-align: center;
+}
+
+.movie img {
+  width: 100%;
+  border-radius: 0.5rem;
+}
