@@ -1,4 +1,4 @@
-function ListOfMovies({ movies }) {
+function MoviesList({ movies }) {
   return (
     <ul className="movies">
       {movies.map((movie) => (
@@ -12,12 +12,9 @@ function ListOfMovies({ movies }) {
   );
 }
 
-function NoResultsMovies() {
-  return <p>No se encontraron películas para esta búsqueda</p>;
-}
-
-export function Movies({ movies }) {
-  const hasMovies = movies?.length > 0;
-
-  return hasMovies ? <ListOfMovies movies={movies} /> : <NoResultsMovies />;
+export function Movies({ movies, search }) {
+  if (search.length < 3) return <p>Aquí se mostrarán los resultados</p>;
+  if (search.length >= 3 && movies.length === 0)
+    return <p>No se encontraron resultados</p>;
+  return <MoviesList movies={movies} />;
 }

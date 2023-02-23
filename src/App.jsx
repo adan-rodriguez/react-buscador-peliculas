@@ -1,49 +1,45 @@
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import "./App.css";
 import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
 import debounce from "just-debounce-it";
+import { useSortMovies } from "./hooks/useSortMovies";
 
-function App() {
-  const [sort, setSort] = useState(false);
-  const { search, updateSearch, error } = useSearch();
-  const { movies, loading, getMovies } = useMovies({ search, sort });
+export default function App() {
+  const { sort, handleSort } = useSortMovies();
+  const { search, updateSearch } = useSearch();
+  const { movies, loading, getMovies } = useMovies(search, sort);
 
   const debounceGetMovies = useCallback(
-    debounce((search) => {
-      getMovies({ search });
+    debounce(async (search) => {
+      await getMovies(search);
     }, 500),
     [getMovies]
   );
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    getMovies({ search });
-  };
-
   const handleChange = (e) => {
     const newSearch = e.target.value;
-    // if (newSearch === " ") return;
-    if (newSearch.startsWith(" ")) return;
+    if (newSearch.startsWith(" ")) return; // if (newSearch === " ") return;
     updateSearch(newSearch);
     debounceGetMovies(newSearch);
-  };
-
-  const handleSort = () => {
-    setSort(!sort);
   };
 
   return (
     <>
       <header>
         <h1>Buscador de películas</h1>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            getMovies(search);
+          }}
+        >
           <input
             onChange={handleChange}
             value={search}
             type="text"
-            placeholder="Matrix, Batman, Superman..."
+            placeholder="Batman, Superman, Spiderman..."
             name="search"
           />
           <label>
@@ -57,11 +53,15 @@ function App() {
           </label>
           <button type="submit">Buscar</button>
         </form>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        <small>Ingresa al menos tres caracteres</small>
       </header>
-      <main>{loading ? <p>Cargando...</p> : <Movies movies={movies} />}</main>
+      <main>
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <Movies movies={movies} search={search} />
+        )}
+      </main>
     </>
   );
 }
-
-export default App;

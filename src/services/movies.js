@@ -1,21 +1,21 @@
-const API_KEY = "31d2e0f2";
+const MOVIES_API_KEY = "31d2e0f2";
 
-export const searchMovies = async ({ search }) => {
-  if (search === "") return null;
+export const searchMovies = async (search) => {
+  const API_URL = `https://www.omdbapi.com/?apikey=${MOVIES_API_KEY}&s=${search}`;
+
+  if (search.length < 3) return [];
 
   try {
-    const response = await fetch(
-      `https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`
-    );
+    const response = await fetch(API_URL);
     const json = await response.json();
-    const movies = json.Search;
-    return movies?.map((movie) => ({
+    const movies = json.Search || [];
+    return movies.map((movie) => ({
       id: movie.imdbID,
       title: movie.Title,
       year: movie.Year,
       image: movie.Poster,
     }));
   } catch (error) {
-    throw new Error("Error searching movies");
+    throw new Error("Ops... ha ocurrido un error");
   }
 };
