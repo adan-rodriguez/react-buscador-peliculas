@@ -7,8 +7,8 @@ export const searchMovies = async (search) => {
 
   try {
     const response = await fetch(API_URL);
-    const json = await response.json();
-    const movies = json.Search || [];
+    const data = await response.json();
+    const movies = data.Search || [];
     return movies.map((movie) => ({
       id: movie.imdbID,
       title: movie.Title,
@@ -16,6 +16,6 @@ export const searchMovies = async (search) => {
       image: movie.Poster,
     }));
   } catch (error) {
-    throw new Error("Ops... ha ocurrido un error");
+    throw new Error("Oops... ha ocurrido un error");
   }
 };

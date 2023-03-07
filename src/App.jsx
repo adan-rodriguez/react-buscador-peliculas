@@ -42,18 +42,18 @@ export default function App() {
             placeholder="Batman, Superman, Spiderman..."
             name="search"
           />
-          <label>
-            Ordenar
-            <input
-              type="checkbox"
-              name="sort"
-              onChange={handleSort}
-              value={sort}
-            />
-          </label>
+          <small>Ingresa al menos tres caracteres</small>
           <button type="submit">Buscar</button>
         </form>
-        <small>Ingresa al menos tres caracteres</small>
+        <label>
+          Ordenar alfabéticamente
+          <input
+            type="checkbox"
+            name="sort"
+            onChange={handleSort}
+            value={sort}
+          />
+        </label>
       </header>
       <main>
         {loading ? (
