@@ -1,68 +1,78 @@
-main {
-  max-width: 1000px;
-  margin: auto;
-  padding: 10px;
-}
-
 header {
-  max-width: 1000px;
-  margin: auto;
-  padding: 10px;
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 1rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 40rem);
+    margin: 0 auto;
+    row-gap: 0.5rem;
+
+    p {
+      font-size: 0.625rem;
+      align-self: flex-start;
+    }
+
+    input#search {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 1rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-family: inherit;
+    }
+
+    button {
+      padding: 0.25rem 1.25rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+  }
+
+  input#sort {
+    vertical-align: middle;
+    margin-left: 0.75rem;
+  }
 }
 
-header h1 {
-  text-align: center;
-}
+main {
+  max-width: 58rem;
+  margin: 0 auto;
+  padding: 1rem;
 
-header form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  .movie-section {
+    ul {
+      list-style-type: none;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
 
-input[name="search"] {
-  width: 100%;
-  max-width: 500px;
-  padding: 5px;
-  font-family: inherit;
-}
+    li {
+      display: flex;
 
-form button {
-  padding: 5px 20px;
-  cursor: pointer;
-  font-family: inherit;
-}
+      article {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
 
-input[name="sort"] {
-  vertical-align: middle;
-  margin-left: 10px;
-}
-
-.movies {
-  list-style-type: none;
-  display: grid;
-  gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-.movie {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.movie h2 {
-  width: 100%;
-}
-
-.movie p {
-  width: 100%;
-}
-
-.movie img {
-  width: 100%;
-  border-radius: 0.5rem;
-  aspect-ratio: 1/1.5;
-  align-self: end;
+        img {
+          width: 100%;
+          border-radius: 0.5rem;
+          aspect-ratio: 2/3;
+          object-fit: cover;
+          margin-top: auto;
+          border: 1px solid silver;
+        }
+      }
+    }
+  }
 }
