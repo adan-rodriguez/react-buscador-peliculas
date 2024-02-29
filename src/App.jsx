@@ -78,11 +78,7 @@ export default function App() {
     <>
       <header>
         <div>
-          <img
-            src="movie-search-logo.png"
-            alt="Logo de Movie Search"
-            className="logo"
-          />
+          <img src="/logo.png" alt="Logo de Movie Search" className="logo" />
           <form
             onSubmit={(e) => {
               e.preventDefault();
