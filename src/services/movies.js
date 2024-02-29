@@ -5,13 +5,13 @@ export const searchMovies = async ({ search }) => {
 
   try {
     const response = await fetch(API_URL);
-    const data = await response.json();
-    const movies = data.Search || [];
-    return movies.map((movie) => ({
-      id: movie.imdbID,
-      title: movie.Title,
-      year: movie.Year,
-      image: movie.Poster,
+    const { Search } = await response.json();
+    const movies = Array.isArray(Search) ? Search : [];
+    return movies.map(({ imdbID, Title, Poster, Year }) => ({
+      id: imdbID,
+      title: Title,
+      year: Year,
+      image: Poster,
     }));
   } catch (error) {
     throw new Error("Oops... ha ocurrido un error");

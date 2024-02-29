@@ -39,7 +39,7 @@ export default function App() {
     previousSearch.current = search;
 
     if (search.length < 3) {
-      // movies.length > 0 && getMovies([]);
+      // movies.length > 0 && getMovies([]); // no funciona xq movies.length siempre es 0
       getMovies([]);
       return;
     }
@@ -77,27 +77,56 @@ export default function App() {
   return (
     <>
       <header>
-        <h1>Buscador de películas</h1>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            obtainMovies(search);
-          }}
-        >
-          <input
-            type="text"
-            id="search"
-            value={search}
-            onChange={handleChange}
-            placeholder="Batman, Superman, Spiderman..."
+        <div>
+          <img
+            src="movie-search-logo.png"
+            alt="Logo de Movie Search"
+            className="logo"
           />
-          <p>Ingresa al menos tres caracteres</p>
-          <button type="submit">Buscar</button>
-        </form>
-        <label>
-          Ordenar alfabéticamente
-          <input type="checkbox" id="sort" value={sort} onChange={getSort} />
-        </label>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              obtainMovies(search);
+            }}
+          >
+            <input
+              type="text"
+              id="search"
+              value={search}
+              onChange={handleChange}
+              placeholder="Batman, Superman, Spiderman..."
+            />
+            <div>
+              <p>Ingresa al menos tres caracteres</p>
+              <button type="submit">Buscar</button>
+            </div>
+          </form>
+        </div>
+        <button
+          onClick={getSort}
+          title={
+            sort ? "No ordenar alfabéticamente" : "Ordenar alfabéticamente"
+          }
+          className={`sort-btn ${sort ? "active" : "disabled"}`}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 10v-5c0 -1.38 .62 -2 2 -2s2 .62 2 2v5m0 -3h-4" />
+            <path d="M19 21h-4l4 -7h-4" />
+            <path d="M4 15l3 3l3 -3" />
+            <path d="M7 6v12" />
+          </svg>
+        </button>
       </header>
       <main>{loading ? <p>Cargando...</p> : <Movies movies={movies} />}</main>
     </>

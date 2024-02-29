@@ -9,9 +9,20 @@
 }
 
 :root {
-  color-scheme: dark light;
+  color-scheme: dark;
 }
 
 body {
+  min-height: 100dvh;
   font-family: "Poppins", sans-serif;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)),
+    url("bg.webp");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
 }
