@@ -26,3 +26,12 @@ button {
   cursor: pointer;
   font-family: inherit;
 }
+
+ul {
+  list-style-type: none;
+}
+
+input {
+  text-overflow: ellipsis;
+  font-family: inherit;
+}

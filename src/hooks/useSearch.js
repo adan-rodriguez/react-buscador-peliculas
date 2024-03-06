@@ -2,11 +2,11 @@ import { useState } from "react";
 
 export function useSearch() {
   const [search, setSearch] = useState("");
-  // const [error, setError] = useState(null);
 
-  const getSearch = (newSearch) => {
+  const updateSearch = (newSearch) => {
+    if (newSearch.startsWith(" ")) return; // if (newSearch === " ") return;
     setSearch(newSearch);
   };
 
-  return { search, getSearch };
+  return { search, updateSearch };
 }

@@ -21,8 +21,6 @@ header {
         width: 100%;
         padding: 0.5rem;
         border-radius: 1rem;
-        text-overflow: ellipsis;
-        font-family: inherit;
         margin-bottom: 0.5rem;
       }
 
@@ -65,7 +63,6 @@ main {
 
   .movie-section {
     ul {
-      list-style-type: none;
       display: grid;
       gap: 2rem;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -85,7 +82,7 @@ main {
           aspect-ratio: 2/3;
           object-fit: cover;
           margin-top: auto;
-          border: 1px solid silver;
+          border: 1px solid;
         }
       }
     }
