@@ -1,7 +1,7 @@
-const MOVIES_API_KEY = "31d2e0f2";
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const getMovies = async ({ search }) => {
-  const API_URL = `https://www.omdbapi.com/?apikey=${MOVIES_API_KEY}&s=${search}`;
+  const API_URL = `https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}`;
 
   const response = await fetch(API_URL);
   if (!response.ok) throw new Error();

@@ -16,32 +16,6 @@ export default function App() {
     updateError,
   });
 
-  // const obtainMovies = async (search) => {
-  //   if (previousSearch.current === search) return;
-  //   // setError(null);
-  //   previousSearch.current = search;
-
-  //   if (search.length < 3) {
-  //     getMovies([]);
-  //     return;
-  //   }
-
-  //   getLoading(true);
-
-  //   try {
-  //     const newMovies = await searchMovies({ search });
-  //     getMovies(newMovies);
-  //   } catch (error) {
-  //     // setError(error.message);
-  //   } finally {
-  //     getLoading(false);
-  //   }
-  // };
-
-  // const debounceGetMovies = debounce(async (search) => {
-  //   await obtainMovies(search);
-  // }, 500);
-
   const handleChangeMovieInput = (e) => {
     const newSearch = e.target.value;
     updateSearch(newSearch);
@@ -59,11 +33,13 @@ export default function App() {
           <img src="/logo.png" alt="Logo de Movie Search" className="logo" />
           <form onSubmit={(e) => handleSubmitMovieForm(e, { search })}>
             <input
-              type="text"
               id="search"
+              type="text"
               value={search}
               onChange={handleChangeMovieInput}
               placeholder="Batman, Superman, Spiderman..."
+              required
+              minLength="3"
               maxLength="208"
             />
             <div>
@@ -85,6 +61,17 @@ export default function App() {
       <main>
         {error ? <p>{error}</p> : <Movies movies={movies} loading={loading} />}
       </main>
+      <footer>
+        Made by{" "}
+        <a
+          href="https://www.linkedin.com/in/adan-gabriel-rodriguez"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn de Adán Rodríguez"
+        >
+          Adán Rodríguez
+        </a>
+      </footer>
     </>
   );
 }
