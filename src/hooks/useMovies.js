@@ -49,7 +49,7 @@ export function useMovies({ search, previousSearch, updateError }) {
 
   const sortedMovies = useMemo(() => {
     return sort
-      ? [...movies].sort((a, b) => a.title.localeCompare(b.title))
+      ? movies.toSorted((a, b) => a.title.localeCompare(b.title))
       : movies;
   }, [sort, movies]);
 
