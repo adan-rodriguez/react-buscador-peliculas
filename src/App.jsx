@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { Movies } from "./components/Movies";
 import { useMovies } from "./hooks/useMovies";
 import { useSearch } from "./hooks/useSearch";
-import SortIcon from "./icons/SortIcon";
+import SortIcon from "./components/icons/SortIcon";
 import { useError } from "./hooks/useError";
 
 export default function App() {
@@ -17,12 +17,13 @@ export default function App() {
   });
 
   const handleChangeMovieInput = (e) => {
-    const newSearch = e.target.value;
-    updateSearch(newSearch);
+    updateSearch(e.target.value);
   };
 
   const handleSubmitMovieForm = (e) => {
     e.preventDefault();
+    const formData = new FormData(e.target);
+    const search = formData.get("search");
     obtainMovies(search);
   };
 
@@ -31,9 +32,10 @@ export default function App() {
       <header>
         <div>
           <img src="/logo.png" alt="Logo de Movie Search" className="logo" />
-          <form onSubmit={(e) => handleSubmitMovieForm(e, { search })}>
+          <form onSubmit={handleSubmitMovieForm}>
             <input
               id="search"
+              name="search"
               type="text"
               value={search}
               onChange={handleChangeMovieInput}
