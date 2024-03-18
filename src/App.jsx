@@ -31,7 +31,7 @@ export default function App() {
     <>
       <header>
         <div>
-          <img src="/logo.png" alt="Logo de Movie Search" className="logo" />
+          <img src="/logo.avif" alt="Logo de Movie Search" className="logo" />
           <form onSubmit={handleSubmitMovieForm}>
             <input
               id="search"
